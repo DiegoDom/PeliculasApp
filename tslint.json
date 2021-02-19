@@ -148,6 +148,7 @@
       "app",
       "kebab-case"
     ],
-    "prefer-const": false
+    "prefer-const": false,
+    "triple-equals": false
   }
 }

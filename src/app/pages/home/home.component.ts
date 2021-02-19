@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import { Movie } from '../../interfaces/nowPlaying-response';
 
@@ -10,13 +10,30 @@ import { Movie } from '../../interfaces/nowPlaying-response';
 export class HomeComponent implements OnInit {
 
   public movies: Movie[] = [];
+  public moviesSlideShow: Movie[] = [];
+
+  @HostListener('window:scroll', ['$event'])
+    onScroll() {
+      const position = (document.documentElement.scrollTop || document.body.scrollTop) + 1300;
+      const max = (document.documentElement.scrollHeight || document.body.scrollHeight);
+      if (position > max) {
+        if (this.moviesService.cargando) { return; }
+        this.moviesService.getCartelera()
+        .subscribe(movies => {
+          this.movies.push(...movies);
+        }, (err) => {
+          console.log(err);
+        });
+      }
+    }
 
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit() {
     this.moviesService.getCartelera()
-    .subscribe(resp => {
-      this.movies = resp.results;
+    .subscribe(movies => {
+      this.movies = movies;
+      this.moviesSlideShow = movies;
     }, (err) => {
       console.log(err);
     });
