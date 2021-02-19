@@ -1,1 +1,30 @@
-<p>movie works!</p>
+<div class="row mt-3 animate__animated animate__fadeIn" *ngIf="movie">
+  <div class="col-12">
+    <button class="btn btn-sm btn-outline-danger float-right" type="button" (click)="goBack()">Regresar</button>
+  </div>
+  <div class="col-md-6 col-12">
+    <img [src]="movie.poster_path | poster" [alt]="movie.title" class="img-fluid poster">
+  </div>
+  <div class="col-md-6 col-12">
+    <h3>{{ movie.title }}</h3>
+    <div class="row">
+      <div class="col text-white">
+        <star-rating [value]="movie.vote_average" [totalstars]="10" checkedcolor="yellow" uncheckedcolor="grey" size="15px" [readonly]="true"></star-rating>
+      </div>
+      <div class="col text-white">
+        {{ movie.vote_average | number:'1.1-2' }}
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col text-white text-justify ">
+        {{ movie.overview }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-3 animate__animated animate__fadeIn" *ngIf="casting.length">
+  <div class="col">
+    <app-casting-slide-show [casting]="casting"></app-casting-slide-show>
+  </div>
+</div>

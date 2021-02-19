@@ -3,9 +3,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search movie..." aria-label="Search">
-      <button class="btn btn-outline-danger my-2 my-sm-0" type="button">Search</button>
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+      <input #txtSearch (keyup.enter)="searchMovie(txtSearch.value)" class="form-control mr-sm-2" type="search" placeholder="Search movie..." aria-label="Search">
+      <button class="btn btn-outline-danger my-2 my-sm-0" type="button" (click)="searchMovie(txtSearch.value)">Search</button>
+    </div>
   </div>
 </nav>

@@ -5,7 +5,11 @@ import { MovieComponent } from './movie/movie.component';
 import { SearchComponent } from './search/search.component';
 import { ComponentsModule } from '../components/components.module';
 
+/* Pipes */
+import { PipesModule } from '../pipes/pipes.module';
 
+/* Packages */
+import { RatingModule } from 'ng-starrating';
 
 @NgModule({
   declarations: [
@@ -15,7 +19,9 @@ import { ComponentsModule } from '../components/components.module';
   ],
   imports: [
     CommonModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule,
+    RatingModule
   ]
 })
 export class PagesModule { }
